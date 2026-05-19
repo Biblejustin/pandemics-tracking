@@ -8,9 +8,33 @@ Hand-curated catalog of major pandemics and epidemics from antiquity to present,
 - **Spanish flu (1918–20, ~50M) and Black Death (1346–53, ~75M) dominate** the top of the distribution; HIV/AIDS cumulative (~42M) is the modern equivalent.
 - **No ≥1M-death event between Hong Kong flu (1968) and HIV/AIDS (1981 onset)** — that's the longest single-event gap in the modern catalog before COVID-19.
 - **Death-toll distribution is fat-tailed**, the same regime Cirillo & Taleb document for war casualties and Ó Gráda for famines.
-- **COVID-19 (~7M confirmed, 15–30M excess)** is one of the biggest pandemic events of the post-WWII era but smaller than the 1918 flu by an order of magnitude.
+- **Post-1900 decadal trend = +0.007 pandemics/decade [95% CI −0.002, +0.017]** — statistically flat.
 
-See `plots/` for the four charts.
+## Sample output
+
+### Pandemic deaths over time
+
+Bubble size scales with deaths; red highlights ≥1M-death events. The Black Death, Plague of Justinian, and Spanish Flu sit at the top of the log scale; the modern era (1900+) adds HIV/AIDS and COVID-19 to the very-large band.
+
+![Pandemic history](plots/01_pandemics_history.png)
+
+### Pandemics per decade by death band
+
+Stacked bars: pandemics per decade since 1900, partitioned by death band (100k–1M, 1M–10M, ≥10M). Dashed line is an OLS fit on complete decades — flat, with the 95% bootstrap CI crossing zero. The 1920s spike is Spanish flu; the 2020s bar is COVID-19 but is shaded grey because the decade isn't complete yet.
+
+![Decadal counts](plots/02_decadal_counts_by_band.png)
+
+### Great pandemic timing (≥1M deaths)
+
+Cumulative count of ≥1M-death pandemics since 1900 vs a constant-rate reference line, and the bar chart of inter-event intervals. The 1968→1981 gap (Hong Kong flu → HIV/AIDS onset) and the long 1957→2009 gap between novel flu pandemics are visible. Recent events (COVID-19 2019) land roughly on the constant-rate line.
+
+![Great pandemic timing](plots/03_great_pandemic_timing.png)
+
+### Magnitude distribution
+
+Log-log survival function. The dashed line is a power-law fit on the tail (deaths ≥ 200k). The slope α gives the Gutenberg-Richter-analog exponent.
+
+![Magnitude distribution](plots/04_magnitude_distribution.png)
 
 ## What's in it
 
@@ -23,22 +47,6 @@ See `plots/` for the four charts.
 - `sources_notes` — source author or attribution
 
 Coverage: Plague of Athens (430 BC) → mpox (2022). Includes the major plague pandemics, cholera pandemics (1817–1923 numbered 1–6), flu pandemics (1889, 1918, 1957, 1968, 1976, 2009), HIV/AIDS, COVID-19, and notable regional epidemics like the 1545 Cocoliztli outbreak in Mesoamerica.
-
-## Plots
-
-`make_plots.py` generates four standalone analytical plots:
-
-### `plots/01_pandemics_history.png`
-Pandemic deaths over time, bubble size ∝ deaths, red = ≥1M-death events. Visualizes the catalog span (430 BC → present) on a log scale.
-
-### `plots/02_decadal_counts_by_band.png`
-Stacked bars: pandemics per decade by death band (100k–1M, 1M–10M, ≥10M), modern era only (1900+). Shows the decadal cadence of major events.
-
-### `plots/03_great_pandemic_timing.png`
-Cumulative ≥1M-death pandemic count vs constant-rate reference line, plus inter-event interval bar chart. The constant-rate line is the null model for "is the rate of great pandemics changing over time?"
-
-### `plots/04_magnitude_distribution.png`
-Log-log survival function with power-law fit on the tail (≥200k deaths). Gutenberg-Richter analog: the slope on the log-log plot is the power-law exponent α.
 
 ## Detection-bias caveats
 
