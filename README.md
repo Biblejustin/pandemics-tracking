@@ -16,11 +16,15 @@ Hand-curated catalog of major pandemics and epidemics from antiquity to present,
 
 Bubble size scales with deaths; red highlights ≥1M-death events. The Black Death, Plague of Justinian, and Spanish Flu sit at the top of the log scale; the modern era (1900+) adds HIV/AIDS and COVID-19 to the very-large band.
 
+**In plain English:** Each circle is one pandemic. The higher up it sits, the more people died. The bigger and redder it is, the bigger the disaster. The y-axis is "log scale" — every step up means 10× more deaths (1,000 → 10,000 → 100,000). That's needed because some pandemics killed under a thousand and others killed tens of millions, so a normal axis would squash everything except the biggest events into a flat line.
+
 ![Pandemic history](plots/01_pandemics_history.png)
 
 ### Pandemics per decade by death band
 
 Stacked bars: pandemics per decade since 1900, partitioned by death band (100k–1M, 1M–10M, ≥10M). Dashed line is an OLS fit on complete decades — flat, with the 95% bootstrap CI crossing zero. The 1920s spike is Spanish flu; the 2020s bar is COVID-19 but is shaded grey because the decade isn't complete yet.
+
+**In plain English:** Each bar shows how many pandemics happened in that 10-year period, with different colors stacked on top of each other for "small, medium, large" death counts. The dashed line is the best straight-line trend through the bars. "95% bootstrap CI crossing zero" means: we ran the trend-fit thousands of times on randomly resampled data, and the resulting answers ranged from a slight downward trend to a slight upward one. Because the range includes zero, we can't say there's a real upward or downward direction — pandemic frequency per decade looks roughly flat.
 
 ![Decadal counts](plots/02_decadal_counts_by_band.png)
 
@@ -28,11 +32,15 @@ Stacked bars: pandemics per decade since 1900, partitioned by death band (100k�
 
 Cumulative count of ≥1M-death pandemics since 1900 vs a constant-rate reference line, and the bar chart of inter-event intervals. The 1968→1981 gap (Hong Kong flu → HIV/AIDS onset) and the long 1957→2009 gap between novel flu pandemics are visible. Recent events (COVID-19 2019) land roughly on the constant-rate line.
 
+**In plain English:** The left panel asks: "if huge pandemics arrived on a steady clock, what would that look like?" The grey dashed line is that steady-clock answer. The red staircase shows when ≥1-million-death events actually happened. When the staircase is below the line, we're in a quiet stretch; when it's above, we're in a busy stretch. The right panel shows the gap (in years) between each big pandemic and the next. A bigger bar means a longer quiet period.
+
 ![Great pandemic timing](plots/03_great_pandemic_timing.png)
 
 ### Magnitude distribution
 
 Log-log survival function. The dashed line is a power-law fit on the tail (deaths ≥ 200k). The slope α gives the Gutenberg-Richter-analog exponent.
+
+**In plain English:** Both axes are log scale (every step is 10×). The dots show: "how many pandemics killed at least X people?" Reading right to left, the further right you go the bigger the disasters. Pandemics with very few deaths are common (top-left of the curve); very deadly ones are rare (bottom-right). The dashed line through the right side shows a regular pattern: every time you ask for "twice as deadly" the number of events drops by a predictable amount. Earthquakes and wars follow this same kind of pattern.
 
 ![Magnitude distribution](plots/04_magnitude_distribution.png)
 
