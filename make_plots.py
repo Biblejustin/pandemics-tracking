@@ -89,6 +89,21 @@ def plot_02_decadal_counts_by_band(df: pd.DataFrame):
     # Shade partial 2020s
     ax.axvspan(PARTIAL_DECADE_START, PARTIAL_DECADE_START + 10,
                 color="grey", alpha=0.18, label="partial decade")
+    # Trend line — fit on complete decades only, in the detection-clean era
+    totals = np.array(bottom)
+    full_decades_mask = decades < PARTIAL_DECADE_START
+    x_fit = decades[full_decades_mask]; y_fit = totals[full_decades_mask]
+    slope, intercept = np.polyfit(x_fit, y_fit, 1)
+    # Bootstrap slope CI
+    rng = np.random.default_rng(42)
+    boot_slopes = []
+    for _ in range(2000):
+        idx = rng.integers(0, len(x_fit), len(x_fit))
+        s, _ = np.polyfit(x_fit[idx], y_fit[idx], 1)
+        boot_slopes.append(s)
+    ci_lo, ci_hi = np.percentile(boot_slopes, [2.5, 97.5])
+    ax.plot(decades, slope * decades + intercept, "k--", linewidth=1.5,
+              label=f"OLS trend: {slope:+.3f}/decade  [95% CI {ci_lo:+.3f}, {ci_hi:+.3f}]")
     ax.set_xlabel("Decade")
     ax.set_ylabel("Pandemics per decade")
     ax.set_title(f"Pandemic onsets per decade by death band (catalog starts {CATALOG_START})")
@@ -96,6 +111,7 @@ def plot_02_decadal_counts_by_band(df: pd.DataFrame):
     plt.tight_layout()
     plt.savefig(PLOTS / "02_decadal_counts_by_band.png")
     plt.close()
+    return slope, ci_lo, ci_hi
 
 
 def plot_03_great_pandemic_timing(df: pd.DataFrame):
@@ -188,7 +204,8 @@ def main():
     print(f"≥1M deaths: {(df['deaths_estimate'] >= GREAT_PANDEMIC_THRESHOLD).sum()}")
     print(f"≥10M deaths: {(df['deaths_estimate'] >= 10_000_000).sum()}")
     plot_01_history(df)
-    plot_02_decadal_counts_by_band(df)
+    slope, lo, hi = plot_02_decadal_counts_by_band(df)
+    print(f"Decadal trend ({CATALOG_START}+): {slope:+.3f}/decade [95% CI {lo:+.3f}, {hi:+.3f}]")
     plot_03_great_pandemic_timing(df)
     plot_04_magnitude_distribution(df)
     print(f"Wrote 4 plots to {PLOTS}/")
