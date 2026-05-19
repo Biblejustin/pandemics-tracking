@@ -26,13 +26,15 @@ Stacked bars: pandemics per decade since 1900, partitioned by death band (100k�
 
 **In plain English:** Each bar shows how many pandemics happened in that 10-year period, with different colors stacked on top of each other for "small, medium, large" death counts. The dashed line is the best straight-line trend through the bars. "95% bootstrap CI crossing zero" means: we ran the trend-fit thousands of times on randomly resampled data, and the resulting answers ranged from a slight downward trend to a slight upward one. Because the range includes zero, we can't say there's a real upward or downward direction — pandemic frequency per decade looks roughly flat.
 
+**Above vs. below the line:** A decade whose bar pokes *above* the dashed trend line was busier than the long-run average suggests; a decade *below* the line was quieter than the average. So the 1910s bar that exceeds the line means "more pandemics started in the 1910s than the long-run trend would predict" (Spanish Flu era). Decades far below the line are unusually quiet stretches.
+
 ![Decadal counts](plots/02_decadal_counts_by_band.png)
 
 ### Great pandemic timing (≥1M deaths)
 
 Cumulative count of ≥1M-death pandemics since 1900 vs a constant-rate reference line, and the bar chart of inter-event intervals. The 1968→1981 gap (Hong Kong flu → HIV/AIDS onset) and the long 1957→2009 gap between novel flu pandemics are visible. Recent events (COVID-19 2019) land roughly on the constant-rate line.
 
-**In plain English:** The left panel asks: "if huge pandemics arrived on a steady clock, what would that look like?" The grey dashed line is that steady-clock answer. The red staircase shows when ≥1-million-death events actually happened. When the staircase is below the line, we're in a quiet stretch; when it's above, we're in a busy stretch. The right panel shows the gap (in years) between each big pandemic and the next. A bigger bar means a longer quiet period.
+**In plain English:** The left panel asks: "if huge pandemics arrived on a steady clock, what would that look like?" The grey dashed line is that steady-clock answer. The red staircase shows when ≥1-million-death events actually happened. **Above vs. below the line:** when the red staircase is *above* the grey dashed line, big pandemics have been arriving *faster* than the long-run average rate (we're in a busy stretch). When the staircase is *below* the line, they've been arriving *slower* (a quiet stretch). The right panel shows the gap (in years) between each big pandemic and the next. A bigger bar means a longer quiet period.
 
 ![Great pandemic timing](plots/03_great_pandemic_timing.png)
 
@@ -41,6 +43,8 @@ Cumulative count of ≥1M-death pandemics since 1900 vs a constant-rate referenc
 Log-log survival function. The dashed line is a power-law fit on the tail (deaths ≥ 200k). The slope α gives the Gutenberg-Richter-analog exponent.
 
 **In plain English:** Both axes are log scale (every step is 10×). The dots show: "how many pandemics killed at least X people?" Reading right to left, the further right you go the bigger the disasters. Pandemics with very few deaths are common (top-left of the curve); very deadly ones are rare (bottom-right). The dashed line through the right side shows a regular pattern: every time you ask for "twice as deadly" the number of events drops by a predictable amount. Earthquakes and wars follow this same kind of pattern.
+
+**Above vs. below the line:** A dot *above* the dashed power-law line means "there are more pandemics at this death-count than the predictable scaling rule would suggest" — an excess at that severity. A dot *below* the line means "fewer than predicted" — either the catalog missed some events at that size (detection bias for small events) or events of that exact size really are rarer than the scaling rule expects. For the very-large tail, a dot above the line at the far right is a "fat tail" — the historically deadliest events are even more devastating than the smooth scaling rule would say (e.g. the Black Death and Spanish Flu sit slightly above the line). For the small end, dots below the line indicate the catalog only includes events past a cutoff (we excluded everything under ~100k deaths).
 
 ![Magnitude distribution](plots/04_magnitude_distribution.png)
 
