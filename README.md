@@ -1,6 +1,6 @@
 # pandemics-tracking
 
-Hand-curated catalog of major pandemics and epidemics from antiquity to present, parallel in spirit to `earthquakes`, `spaceweather`, `famines-tracking`, and `flood-data`.
+Hand-curated catalog of major pandemics and epidemics from antiquity to present. One of 10 sibling repos analyzed together — see the [`correlations`](https://github.com/Biblejustin/correlations) hub for the cross-repo analysis.
 
 ## Quick findings
 
